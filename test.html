@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard | Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+  
+  
+  <!-- <script src="js/popper.min.js"></script> -->
+  <!-- <script src="js/bootstrap.min.js"></script>  -->
+
+  <script>
+      $(document).ready(function(){
+          $("#filter").mouseenter(function(){
+              $('.filter-grid').css('display','inline-block');
+          });
+          $(".filter-grid").mouseleave(function(){
+              $('.filter-grid').css('display','none');
+          })
+      });
+  </script>
+</head>
+<body>
+
+<!-- header -->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Dashboard</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <!-- <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Page 1-1</a></li>
+              <li><a href="#">Page 1-2</a></li>
+              <li><a href="#">Page 1-3</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul> -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="export">Export</li>
+          <li id="filter"><a href="javascript:void(0)"><span class="fa fa-filter" aria-hidden="true"></span> Filter</a></li>
+          <li><a href="#"><span class="fa fa-sign-out" aria-hidden="true"></span> LogOut</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!-- Header ends-->
+<div class="filter-grid" style="position: absolute;margin-left: 53%;z-index: 9999;top: 48px;">
+  
+    <select>
+      <option>Bank Name</option>
+      <option>SBI</option>
+    </select>
+  
+    <select>
+      <option>Clinet Name</option>
+      <option>Hari</option>
+    </select>
+  
+    <select>
+      <option>Exp.Date</option>
+      <option>26-12-17</option>
+    </select>
+  
+    <input type="submit" class="btn btn-success" style="margin-right: 10px;">
+
+</div>
+
+<!--Plus -->
+<div class="fixed-plus">
+    <a href="#" id="myBtn" data-toggle="modal" data-target="#myModal" title="Add new datas"><i class="fa fa-plus" aria-hidden="true" style="font-size: 26px;color: #FFF;padding: 10px;"></i></a>
+</div>
+
+<!-- <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</a> -->
+<!-- The Modal -->
+<div class="container">
+
+    <div id="myModal" class="own-modal">
+        
+          <!-- Modal content -->
+          <div class="own-modal-content">
+            <div class="own-modal-header">
+              <span class="close">&times;</span>
+              <h4 style="line-height: 1.5;">Fill The Detail</h4>
+            </div>
+            <div class="own-modal-body">
+              <div class="col-lg-12"><p style="margin-left: -15px;padding: 10px 0px;">Personal Info</p></div>
+              
+              <div class="row">
+                <div class="col-lg-6">
+                  <p>Bank Name:</p>
+                  <input type="text" class="form-control">
+                  <p>Amount:</p>
+                  <input type="text" class="form-control">
+                  <p>Date (From):</p>
+                  <input type="date" class="form-control">
+                  <p>R.O.%:</p>
+                  <input type="text" class="form-control">
+                  <p>Mat.Vlu :</p>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-6">  
+                  <p>FDR Number:</p>
+                  <input type="text" class="form-control">
+                  <p>Phone Number:</p>
+                  <input type="text" class="form-control">
+                  <p>Date (To):</p>
+                  <input type="date" class="form-control">
+                  <p>Name:</p>
+                  <input type="text" class="form-control">
+                  <p>%Frq :</p>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+
+            </div>
+            <div class="own-modal-footer">
+                <button type="button" class="btn btn-mod " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-mod float-right">Save changes</button>
+            </div>
+          </div>
+        
+    </div>
+
+</div>
+<!-- Modal ends -->
+
+<div class="container-fluid">
+  <table id="example" class="table table-responsive table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+          <tr>
+              <th>S.No</th>
+              <th>Bank Name</th>
+              <th>FDR Number</th>
+              <th>Amount</th>
+              <th>Date From</th>
+              <th>Date To</th>
+              <th>Rate of Interest</th>
+              <th>Name</th>
+              <th>Maturity</th>
+              <th>Interest Frequent</th>
+              <th>Amt of Interest</th>
+              <th>Status</th>
+              <!-- <th><a href="javascript:void(0)" title="Switch to inserting"><i class="fa fa-plus" aria-hidden="true"></i></a></th> -->
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>1</td>
+              <td>CUB-RSP</td>
+              <td>14878/1</td>
+              <td>500000</td>
+              <td>2011/04/25</td>
+              <td>$320,800</td>
+              <td>7.5%</td>
+              <td>M.KUMARASAMY</td>
+              <td>5,00,000</td>
+              <td>15000</td>
+              <td>15000</td>
+              <td>Q</td>
+              <td><i class="fa fa-pencil cursor" aria-hidden="true"></i>
+                <i class="fa fa-clone cursor" aria-hidden="true"></i>
+                <i class="fa fa-trash cursor" aria-hidden="true"></i></td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>IOB</td>
+              <td>14878/1</td>
+              <td>250000</td>
+              <td>2011/04/05</td>
+              <td>$320,800</td>
+              <td>7.5%</td>
+              <td>M.SWAMY</td>
+              <td>5,00,000</td>
+              <td>15000</td>
+              <td>15000</td>
+              <td>Q</td>
+              <td><i class="fa fa-pencil cursor" aria-hidden="true"></i>
+                <i class="fa fa-clone cursor" aria-hidden="true"></i>
+                <i class="fa fa-trash cursor" aria-hidden="true"></i></td>
+          </tr>
+          
+      </tbody>
+  </table>
+
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
+</script>
+
+<script>
+  
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</script>
+
+</body>
+</html>
